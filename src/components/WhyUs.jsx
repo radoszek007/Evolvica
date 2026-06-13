@@ -1,5 +1,6 @@
 import React from 'react';
 import { Laptop, Cpu, MessageSquare, ShieldCheck } from 'lucide-react';
+import AnimateOnScroll from './AnimateOnScroll';
 
 export default function WhyUs() {
   const cards = [
@@ -28,26 +29,27 @@ export default function WhyUs() {
   return (
     <section id="proc-evolvica" className="section" style={{ backgroundColor: 'var(--color-neutral-white)' }}>
       <div className="container">
-        <div className="section-header animate-on-scroll">
+        <AnimateOnScroll className="section-header">
           <span className="section-tag">Proč Evolvica One</span>
           <h2 className="section-title">Kompetence, které firmy potřebují teď</h2>
           <p className="section-subtitle">
             Firmy dnes řeší rychlou digitalizaci, tlak na efektivitu, nástup AI, komunikační nároky a rostoucí zatížení zaměstnanců. Evolvica One propojuje technické dovednosti s lidskou připraveností. Zaměřujeme se na to, co lidé skutečně využijí ve své práci: v administrativě, výrobě, obchodu, službách, HR i managementu.
           </p>
-        </div>
+        </AnimateOnScroll>
 
         <div className="grid-4">
           {cards.map((card, idx) => (
-            <div
+            <AnimateOnScroll
               key={idx}
-              className={`card-why animate-on-scroll delay-${idx + 1}`}
+              className="card-why"
+              delay={(idx + 1) * 0.1}
             >
               <div className="card-why-icon-box">
                 {card.icon}
               </div>
               <h3 className="card-why-title">{card.title}</h3>
               <p className="card-why-desc">{card.desc}</p>
-            </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>

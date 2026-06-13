@@ -14,26 +14,7 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('hero');
 
   useEffect(() => {
-    // 1. Intersection Observer for scroll fade-in animations
-    const animationObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-          }
-        });
-      },
-      {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.15 // trigger when 15% of the element is visible
-      }
-    );
-
-    const animatedElements = document.querySelectorAll('.animate-on-scroll');
-    animatedElements.forEach((el) => animationObserver.observe(el));
-
-    // 2. Intersection Observer for active section in Header navigation
+    // Intersection Observer for active section in Header navigation
     const sectionIds = ['hero', 'proc-evolvica', 'okruhy', 'pro-koho', 'jak-pracujeme', 'duveryhodnost', 'kontakt'];
     const sectionObserver = new IntersectionObserver(
       (entries) => {
@@ -57,7 +38,6 @@ export default function App() {
 
     // Clean up observers
     return () => {
-      animatedElements.forEach((el) => animationObserver.unobserve(el));
       sectionIds.forEach((id) => {
         const el = document.getElementById(id);
         if (el) sectionObserver.unobserve(el);

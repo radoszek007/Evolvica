@@ -1,5 +1,6 @@
 import React from 'react';
 import { HelpCircle, ArrowRight } from 'lucide-react';
+import AnimateOnScroll from './AnimateOnScroll';
 
 export default function Funding() {
   const scrollToContact = () => {
@@ -28,7 +29,7 @@ export default function Funding() {
   return (
     <section id="financovani" className="section" style={{ backgroundColor: 'var(--color-neutral-white)' }}>
       <div className="container">
-        <div className="funding-box animate-on-scroll">
+        <AnimateOnScroll className="funding-box">
           <div className="funding-grid">
             <div>
               <span className="section-tag" style={{ marginBottom: '1rem' }}>Financování a podpora</span>
@@ -64,7 +65,7 @@ export default function Funding() {
               </p>
             </div>
           </div>
-        </div>
+        </AnimateOnScroll>
       </div>
     </section>
   );

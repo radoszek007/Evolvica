@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Mail, Phone, MapPin, Check, X, AlertTriangle } from 'lucide-react';
+import { Mail, Phone, MapPin, Check, X } from 'lucide-react';
+import AnimateOnScroll from './AnimateOnScroll';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -103,7 +104,7 @@ export default function Contact() {
       <div className="container">
         <div className="contact-grid">
           
-          <div className="contact-info-panel animate-on-scroll">
+          <AnimateOnScroll className="contact-info-panel">
             <div>
               <span className="section-tag" style={{ marginBottom: '1rem' }}>Poptávka</span>
               <h2 className="contact-info-title">Chcete připravit vzdělávací program pro vaši firmu?</h2>
@@ -128,9 +129,9 @@ export default function Contact() {
                 <span className="contact-detail-text">Praha, Česká republika</span>
               </div>
             </div>
-          </div>
+          </AnimateOnScroll>
 
-          <div className="contact-form-card animate-on-scroll">
+          <AnimateOnScroll className="contact-form-card" delay={0.15}>
             <form onSubmit={handleSubmit}>
               <div className="form-grid">
                 
@@ -308,7 +309,7 @@ export default function Contact() {
 
               </div>
             </form>
-          </div>
+          </AnimateOnScroll>
 
         </div>
       </div>

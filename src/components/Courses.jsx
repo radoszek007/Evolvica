@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Cpu, Layers, Users, Brain, Shield, Zap, ChevronDown, CheckCircle2 } from 'lucide-react';
+import AnimateOnScroll from './AnimateOnScroll';
 
 export default function Courses() {
   const [expandedIndices, setExpandedIndices] = useState([0]); // First item open by default
@@ -108,22 +109,22 @@ export default function Courses() {
       </svg>
 
       <div className="container">
-        <div className="section-header animate-on-scroll">
+        <AnimateOnScroll className="section-header">
           <span className="section-tag">Vzdělávací programy</span>
           <h2 className="section-title">Vzdělávací okruhy pro vaši firmu</h2>
           <p className="section-subtitle">
             Nenabízíme jeden univerzální kurz pro všechny. S firmou nejprve pojmenujeme potřebu, cílové skupiny a pracovní kontext. Teprve potom sestavíme vzdělávací plán z vhodných okruhů.
           </p>
-        </div>
+        </AnimateOnScroll>
 
         <div className="courses-container">
           {courseList.map((course, idx) => {
             const isExpanded = expandedIndices.includes(idx);
             return (
-              <div
+              <AnimateOnScroll
                 key={idx}
-                className={`course-item animate-on-scroll ${isExpanded ? 'expanded' : ''}`}
-                style={{ transitionDelay: `${idx * 0.05}s` }}
+                className={`course-item ${isExpanded ? 'expanded' : ''}`}
+                delay={idx * 0.05}
               >
                 <div
                   className="course-header"
@@ -154,7 +155,7 @@ export default function Courses() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </AnimateOnScroll>
             );
           })}
         </div>

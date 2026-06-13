@@ -1,5 +1,6 @@
 import React from 'react';
 import { GraduationCap, Wrench, Building, ClipboardCheck } from 'lucide-react';
+import AnimateOnScroll from './AnimateOnScroll';
 
 export default function Trust() {
   const points = [
@@ -38,24 +39,25 @@ export default function Trust() {
       </svg>
 
       <div className="container trust-grid">
-        <div className="trust-content animate-on-scroll">
+        <AnimateOnScroll className="trust-content">
           <span className="section-tag">Záruka kvality</span>
           <h2 className="section-title">Odbornost, praxe a srozumitelná realizace</h2>
           <p className="section-subtitle" style={{ color: 'var(--color-text-muted-light)' }}>
             Evolvica One staví na kombinaci technické odbornosti, zkušenosti s firemním vzděláváním a praktického přístupu k rozvoji lidí. Naše programy propojují digitální nástroje, komunikaci a pracovní odolnost tak, aby vzdělávání nebylo odtržené od reality firmy.
           </p>
-        </div>
+        </AnimateOnScroll>
 
         <div className="trust-bullets">
           {points.map((point, idx) => (
-            <div
+            <AnimateOnScroll
               key={idx}
-              className={`trust-bullet-card animate-on-scroll delay-${(idx % 2) + 1}`}
+              className="trust-bullet-card"
+              delay={((idx % 2) + 1) * 0.15}
             >
               {point.icon}
               <h3 className="trust-bullet-title">{point.title}</h3>
               <p className="trust-bullet-desc">{point.desc}</p>
-            </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Factory, Files, Handshake, UserCheck, Landmark, Building } from 'lucide-react';
+import AnimateOnScroll from './AnimateOnScroll';
 
 export default function TargetAudience() {
   const targets = [
@@ -38,19 +39,20 @@ export default function TargetAudience() {
   return (
     <section id="pro-koho" className="section" style={{ backgroundColor: 'var(--color-neutral-bg)' }}>
       <div className="container">
-        <div className="section-header animate-on-scroll">
+        <AnimateOnScroll className="section-header">
           <span className="section-tag">Cílové skupiny</span>
           <h2 className="section-title">Pro firmy, které chtějí rozvíjet lidi prakticky a měřitelně</h2>
           <p className="section-subtitle">
             Naše programy přizpůsobujeme na míru specifickým potřebám a podmínkám různých typů týmů a provozů.
           </p>
-        </div>
+        </AnimateOnScroll>
 
         <div className="grid-3">
           {targets.map((target, idx) => (
-            <div
+            <AnimateOnScroll
               key={idx}
-              className={`card-audience animate-on-scroll delay-${(idx % 3) + 1}`}
+              className="card-audience"
+              delay={((idx % 3) + 1) * 0.1}
             >
               <div className="audience-header">
                 <div className="audience-icon-box">
@@ -59,7 +61,7 @@ export default function TargetAudience() {
                 <h3 className="audience-title">{target.title}</h3>
               </div>
               <p className="audience-desc">{target.desc}</p>
-            </div>
+            </AnimateOnScroll>
           ))}
         </div>
       </div>
