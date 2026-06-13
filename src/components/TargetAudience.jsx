@@ -1,0 +1,68 @@
+import React from 'react';
+import { Factory, Files, Handshake, UserCheck, Landmark, Building } from 'lucide-react';
+
+export default function TargetAudience() {
+  const targets = [
+    {
+      icon: <Factory size={22} />,
+      title: 'Výrobní firmy',
+      desc: 'Programy pro mistry, teamleadery, dispečery a provozní pracovníky, kteří potřebují zvládat komunikaci, digitální nástroje a tlak v každodenním provozu.'
+    },
+    {
+      icon: <Files size={22} />,
+      title: 'Administrativní týmy',
+      desc: 'Praktické využití MS 365, AI a digitálních nástrojů pro rychlejší, přesnější a bezpečnější práci s informacemi.'
+    },
+    {
+      icon: <Handshake size={22} />,
+      title: 'Obchodní a servisní týmy',
+      desc: 'Komunikace s klientem, práce s námitkami, zvládání napětí a používání digitálních nástrojů v obchodním procesu.'
+    },
+    {
+      icon: <UserCheck size={22} />,
+      title: 'HR a management',
+      desc: 'Podpora manažerů při vedení lidí, komunikaci změn, prevenci přetížení a rozvoji pracovních kompetencí.'
+    },
+    {
+      icon: <Landmark size={22} />,
+      title: 'Veřejný sektor a organizace',
+      desc: 'Vzdělávání pro pracovníky, kteří kombinují administrativní zátěž, komunikaci s veřejností a potřebu bezpečné práce s digitálními nástroji.'
+    },
+    {
+      icon: <Building size={22} />,
+      title: 'Malé a střední firmy',
+      desc: 'Prakticky sestavené programy pro firmy, které potřebují rychle posílit digitální a lidské kompetence bez složité interní akademie.'
+    }
+  ];
+
+  return (
+    <section id="pro-koho" className="section" style={{ backgroundColor: 'var(--color-neutral-bg)' }}>
+      <div className="container">
+        <div className="section-header animate-on-scroll">
+          <span className="section-tag">Cílové skupiny</span>
+          <h2 className="section-title">Pro firmy, které chtějí rozvíjet lidi prakticky a měřitelně</h2>
+          <p className="section-subtitle">
+            Naše programy přizpůsobujeme na míru specifickým potřebám a podmínkám různých typů týmů a provozů.
+          </p>
+        </div>
+
+        <div className="grid-3">
+          {targets.map((target, idx) => (
+            <div
+              key={idx}
+              className={`card-audience animate-on-scroll delay-${(idx % 3) + 1}`}
+            >
+              <div className="audience-header">
+                <div className="audience-icon-box">
+                  {target.icon}
+                </div>
+                <h3 className="audience-title">{target.title}</h3>
+              </div>
+              <p className="audience-desc">{target.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
