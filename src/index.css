@@ -249,6 +249,7 @@ img, svg {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
+  align-items: start;
 }
 
 @media (max-width: 1024px) {
@@ -537,68 +538,115 @@ img, svg {
 /* Why Us Section */
 .card-why {
   background-color: var(--color-neutral-white);
-  padding: 2.5rem;
   border-radius: var(--border-radius-md);
   border: 1px solid var(--color-border-light);
   transition: var(--transition-smooth);
   box-shadow: var(--shadow-sm);
   display: flex;
   flex-direction: column;
-  position: relative;
+  overflow: hidden;
 }
 
-.card-why:hover {
-  transform: translateY(-5px);
-  box-shadow: var(--shadow-lg);
-  border-color: rgba(13, 148, 136, 0.3);
-}
-
-.card-why::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 4px;
-  background-color: transparent;
-  border-top-left-radius: var(--border-radius-md);
-  border-top-right-radius: var(--border-radius-md);
+.card-why-header {
+  padding: 1.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  user-select: none;
+  gap: 0.75rem;
   transition: var(--transition-smooth);
 }
 
-.card-why:hover::before {
-  background-color: var(--color-accent-teal);
+.card-why-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
 .card-why-icon-box {
-  width: 54px;
-  height: 54px;
-  border-radius: 12px;
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
   background-color: rgba(13, 148, 136, 0.06);
   border: 1px solid rgba(13, 148, 136, 0.12);
   color: var(--color-accent-teal);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1.5rem;
+  flex-shrink: 0;
   transition: var(--transition-smooth);
 }
 
-.card-why:hover .card-why-icon-box {
+.card-why-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--color-primary-navy);
+  transition: var(--transition-smooth);
+}
+
+.card-why-chevron {
+  color: var(--color-text-muted-dark);
+  transition: transform 0.3s ease, color 0.3s ease;
+  flex-shrink: 0;
+}
+
+/* Hover effect on header */
+.card-why-header:hover {
+  background-color: rgba(13, 148, 136, 0.03);
+}
+
+.card-why-header:hover .card-why-title {
+  color: var(--color-accent-teal);
+}
+
+.card-why-header:hover .card-why-icon-box {
   background-color: var(--color-accent-teal);
   color: var(--color-neutral-white);
 }
 
-.card-why-title {
-  font-size: 1.25rem;
-  margin-bottom: 0.75rem;
-  font-weight: 700;
+.card-why-header:hover .card-why-chevron {
+  color: var(--color-accent-teal);
+}
+
+/* Expanded state indicators */
+.card-why.expanded {
+  border-color: rgba(13, 148, 136, 0.3);
+  box-shadow: var(--shadow-md);
+}
+
+.card-why.expanded .card-why-chevron {
+  transform: rotate(180deg);
+  color: var(--color-accent-teal);
+}
+
+.card-why.expanded .card-why-icon-box {
+  background-color: var(--color-accent-teal);
+  color: var(--color-neutral-white);
+}
+
+/* Card Body */
+.card-why-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.4s ease;
+  background-color: rgba(248, 250, 252, 0.5);
+  border-top: 0px solid transparent;
+}
+
+.card-why.expanded .card-why-body {
+  max-height: 250px;
+  padding: 0 1.75rem 1.75rem 1.75rem;
 }
 
 .card-why-desc {
   color: var(--color-text-muted-dark);
   font-size: 0.95rem;
-  flex-grow: 1;
+  line-height: 1.6;
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--color-border-light);
 }
 
 /* Courses Section */
