@@ -34,8 +34,8 @@ export default function Footer() {
           </p>
           <p className="footer-desc" style={{ fontSize: '0.85rem', color: 'var(--color-text-muted-light)' }}>
             Evolvica One s.r.o.<br />
-            IČO: 12345678 (placeholder)<br />
-            Sídlo: Praha, Česká republika
+            IČ: 297 56 987<br />
+            Sídlo: Cihelní 668/1, Nové Město, 735 06 Karviná
           </p>
         </div>
 
@@ -86,7 +86,7 @@ export default function Footer() {
             </li>
             <li style={{ color: 'var(--color-text-light)' }}>
               <strong>Telefon:</strong><br />
-              <span>+420 777 123 456</span>
+              <span>+420 723 554 643</span>
             </li>
             <li>
               <a 

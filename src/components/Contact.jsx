@@ -122,11 +122,11 @@ export default function Contact() {
               </div>
               <div className="contact-detail-item">
                 <Phone className="contact-detail-icon" />
-                <span className="contact-detail-text">+420 777 123 456</span>
+                <span className="contact-detail-text">+420 723 554 643</span>
               </div>
               <div className="contact-detail-item">
                 <MapPin className="contact-detail-icon" />
-                <span className="contact-detail-text">Praha, Česká republika</span>
+                <span className="contact-detail-text">Cihelní 668/1, Nové Město, 735 06 Karviná</span>
               </div>
             </div>
           </AnimateOnScroll>
@@ -194,7 +194,7 @@ export default function Contact() {
                     value={formData.phone}
                     onChange={handleInputChange}
                     className="form-input"
-                    placeholder="+420 777 123 456"
+                    placeholder="+420 723 554 643"
                   />
                 </div>
 
