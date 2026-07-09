@@ -23,6 +23,11 @@ export default function Contact() {
 
   const [errors, setErrors] = useState({});
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(null);
+
+  // Zde doplňte své Formspree Form ID (např. 'xanyzabc') pro reálné odesílání
+  const FORMSPREE_FORM_ID = '';
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -65,16 +70,75 @@ export default function Contact() {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formErrors = validateForm();
     if (Object.keys(formErrors).length > 0) {
       setErrors(formErrors);
-    } else {
-      setErrors({});
-      // Simulate API submission
-      console.log('Form data submitted:', formData);
-      setShowSuccessModal(true);
+      return;
+    }
+
+    setErrors({});
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    // Převod checkboxů na přehledné české názvy pro e-mail
+    const mappedInterests = Object.keys(formData.interests)
+      .filter(key => formData.interests[key])
+      .map(key => {
+        const labels = {
+          ai: 'AI v pracovní praxi',
+          ms365: 'Microsoft 365 a digi. kompetence',
+          communication: 'Komunikace v prac. situacích',
+          stress: 'Stres management',
+          resilience: 'Resilience a prac. odolnost',
+          burnout: 'Prevence přetížení a vyhoření',
+          other: 'Jiné oblasti'
+        };
+        return labels[key] || key;
+      }).join(', ');
+
+    const payload = {
+      name: formData.name,
+      company: formData.company,
+      email: formData.email,
+      phone: formData.phone || 'Neuvedeno',
+      participants: formData.participants || 'Neuvedeno',
+      interests: mappedInterests || 'Žádné vybrané oblasti',
+      message: formData.message
+    };
+
+    if (!FORMSPREE_FORM_ID) {
+      // Fallback simulace pro lokální prezentaci / testování bez API klíče
+      console.log('Simulated Formspree submission payload:', payload);
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setShowSuccessModal(true);
+      }, 800);
+      return;
+    }
+
+    try {
+      const response = await fetch(`https://formspree.io/f/${FORMSPREE_FORM_ID}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (response.ok) {
+        setIsSubmitting(false);
+        setShowSuccessModal(true);
+      } else {
+        const errorData = await response.json();
+        setSubmitError(errorData.error || 'Odeslání poptávky se nezdařilo. Zkontrolujte prosím konfiguraci Formspree.');
+        setIsSubmitting(false);
+      }
+    } catch (err) {
+      setSubmitError('Chyba sítě. Zkontrolujte prosím připojení k internetu a zkuste to znovu.');
+      setIsSubmitting(false);
     }
   };
 
@@ -301,9 +365,20 @@ export default function Contact() {
                   {errors.message && <div className="form-error-msg">{errors.message}</div>}
                 </div>
 
+                {submitError && (
+                  <div className="form-full form-error-msg" style={{ marginBottom: '0.75rem' }}>
+                    {submitError}
+                  </div>
+                )}
+
                 <div className="form-full" style={{ marginTop: '0.5rem' }}>
-                  <button type="submit" className="btn btn-primary" style={{ width: '100%' }}>
-                    Odeslat poptávku
+                  <button 
+                    type="submit" 
+                    className="btn btn-primary" 
+                    style={{ width: '100%' }}
+                    disabled={isSubmitting}
+                  >
+                    {isSubmitting ? 'Odesílám...' : 'Odeslat poptávku'}
                   </button>
                 </div>
 
