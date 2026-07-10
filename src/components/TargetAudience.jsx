@@ -31,8 +31,8 @@ export default function TargetAudience() {
     },
     {
       icon: <Building size={22} />,
-      title: 'Malé a střední firmy',
-      desc: 'Prakticky sestavené programy pro firmy, které potřebují rychle posílit digitální a lidské kompetence bez složité interní akademie.'
+      title: 'Malé, střední i nadnárodní firmy',
+      desc: 'Vzdělávací programy škálujeme na míru velikosti a struktuře organizace. Od praktických školení klíčových dovedností pro menší týmy až po komplexní rozvojové projekty přizpůsobené procesům a standardům nadnárodních korporací.'
     }
   ];
 
